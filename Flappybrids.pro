@@ -28,16 +28,21 @@ SOURCES += \
         mainwindow.cpp \
     ave.cpp \
     obstaculo.cpp \
-    nube.cpp
+    nube.cpp \
+    gameover.cpp \
+    avion.cpp
 
 HEADERS += \
         mainwindow.h \
     ave.h \
     obstaculo.h \
-    nube.h
+    nube.h \
+    gameover.h \
+    avion.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    gameover.ui
 
 RESOURCES += \
     imagenes.qrc

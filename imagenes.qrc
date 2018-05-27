@@ -5,5 +5,10 @@
         <file>ave4.png</file>
         <file>cielo.png</file>
         <file>nubes.png</file>
+        <file>avion1.png</file>
+        <file>avion2.png</file>
+        <file>avion3.png</file>
+        <file>avion4.png</file>
+        <file>globo.png</file>
     </qresource>
 </RCC>

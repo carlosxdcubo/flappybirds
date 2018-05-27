@@ -11,11 +11,22 @@ void ave::setFlag(int value)
     flag = value;
 }
 
+void ave::setVidas(int value)
+{
+    vidas = value;
+}
+
+int ave::getVidas() const
+{
+    return vidas;
+}
+
 ave::ave(){
     px=0;
     py=100;
     vy=0;
-
+    vidas=3;
+    
 }
 //QRectF ave::boundingRect() const
 //{

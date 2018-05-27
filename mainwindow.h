@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include "ave.h"
 #include "nube.h"
+#include "avion.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ private slots:
 private:
     int ancho;
     int alto;
+    int dif;
     QTimer *timer;              //timer para los intervalos de tiempo entre cada frame
     QGraphicsScene *scene;      //scene que muestra los objetos animados
     float dt;                   //intervalo de tiempo entre frames
@@ -40,6 +42,7 @@ private:
     QList<nube*> n2;
     void renovar();
     void chocar();
+    QList<avion*> a;
 };
 
 #endif // MAINWINDOW_H
