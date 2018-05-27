@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>ave1.png</file>
+        <file>ave2.png</file>
+        <file>ave4.png</file>
+        <file>cielo.png</file>
+    </qresource>
+</RCC>

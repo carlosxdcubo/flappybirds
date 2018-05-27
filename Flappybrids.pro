@@ -26,11 +26,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    ave.cpp
+    ave.cpp \
+    obstaculo.cpp
 
 HEADERS += \
         mainwindow.h \
-    ave.h
+    ave.h \
+    obstaculo.h
 
 FORMS += \
         mainwindow.ui
+
+RESOURCES += \
+    imagenes.qrc

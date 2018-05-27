@@ -18,8 +18,11 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void actualizar();
     //void eliminar();
+
+
+private slots:
+    void actualizar();
     void on_pushButton_clicked();
 
 private:
@@ -28,7 +31,8 @@ private:
     float dt;                   //intervalo de tiempo entre frames
     Ui::MainWindow *ui;
     QList<ave*> bird;
-
+    void keyPressEvent(QKeyEvent *ev);
+    int count;
 };
 
 #endif // MAINWINDOW_H

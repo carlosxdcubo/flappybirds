@@ -1,23 +1,52 @@
 #include "ave.h"
 
+float ave::getPx() const
+{
+    return px;
+}
+
+
+void ave::setFlag(int value)
+{
+    flag = value;
+}
+
 ave::ave(){
     px=0;
     py=0;
     vy=0;
 
 }
-QRectF ave::boundingRect() const
-{
-        return QRectF(-10,-10,20,20);
-}
+//QRectF ave::boundingRect() const
+//{
+//        return QRectF(-100,-100,100,100);
+//}
 
-void ave::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+//void ave::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widgets)
+//{
+
+//    QPixmap pixmap;
+//    pixmap.load(":/new/prefix1/ave1.png");
+//    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
+
+//}
+void ave::mov()
 {
-    painter->setBrush(Qt::darkBlue);
-    painter->drawEllipse(boundingRect());
-    //QPixmap pixmap;
-    //pixmap.load(":/dino.png");
-    //painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
+    if (flag==0)
+    {
+
+        setPixmap(QPixmap(":/new/prefix1/ave1.png").scaled(80*2,60*2));
+
+    }
+    if (flag==1)
+    {
+        setPixmap(QPixmap(":/new/prefix1/ave2.png").scaled(80*2,60*2));
+    }
+    if (flag==2)
+    {
+        setPixmap(QPixmap(":/new/prefix1/ave4.png").scaled(80*2,60*2));
+    }
+
 }
 
 float ave::getPy() const
@@ -33,7 +62,7 @@ float ave::getVy() const
 
 void ave::aletear(bool b)
 {
-    if(b==true)vy-=10;
+    if(b==true)vy=-50;
 }
 
 void ave::actualizar(float _ay, float dt)
