@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
     timer=new QTimer(this);                 //crea el timer
     scene=new QGraphicsScene(this);         //crea la scene
@@ -19,12 +20,15 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addRect(scene->sceneRect());     //Dibuja rectas para la escena
     timer->stop();                          //para el timer
     connect(timer,SIGNAL(timeout()),this,SLOT(actualizar()));    //bucle para actualizar posicion
+    n1.append(new nube(-200,100));
+    scene->addItem(n1.first());
     bird.append(new ave());                 //creo el ave
     bird.first()->setPoint(0,0);        //la coloco en una posición
     bird.first()->setVel(0);                //velocidad =0
     scene->addItem(bird.first());           //añado el ave a la escena
     count=0;
     scene->setBackgroundBrush(QBrush(QImage(":/new/prefix1/cielo.png").scaled(800,600)));
+
 }
 
 MainWindow::~MainWindow()
@@ -36,6 +40,8 @@ void MainWindow::actualizar()
         bird.first()->actualizar(10,dt);
         bird.first()->mov();
         bird.first()->setPos(bird.last()->getPx(),bird.first()->getPy());
+        n1.first()->mover(dt);
+        n1.first()->setPos(n1.first()->getPx(),n1.first()->getPy());
         count++;
         if (count>=0 && count<=99){
             bird.first()->setFlag(1);

@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     ave.cpp \
-    obstaculo.cpp
+    obstaculo.cpp \
+    nube.cpp
 
 HEADERS += \
         mainwindow.h \
     ave.h \
-    obstaculo.h
+    obstaculo.h \
+    nube.h
 
 FORMS += \
         mainwindow.ui

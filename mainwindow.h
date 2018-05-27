@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QKeyEvent>
 #include "ave.h"
+#include "nube.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,6 +34,8 @@ private:
     QList<ave*> bird;
     void keyPressEvent(QKeyEvent *ev);
     int count;
+    QList<nube*> n1;
+    QList<nube*> n2;
 };
 
 #endif // MAINWINDOW_H
