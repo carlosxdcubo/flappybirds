@@ -5,7 +5,7 @@
 class nube:public obstaculo
 {
 public:
-    nube(float _px, float _py);
+    nube(float _px, float _py,float _vx);
 };
 
 #endif // NUBE_H

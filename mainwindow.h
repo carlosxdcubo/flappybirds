@@ -27,6 +27,8 @@ private slots:
     void on_pushButton_clicked();
 
 private:
+    int ancho;
+    int alto;
     QTimer *timer;              //timer para los intervalos de tiempo entre cada frame
     QGraphicsScene *scene;      //scene que muestra los objetos animados
     float dt;                   //intervalo de tiempo entre frames
@@ -36,6 +38,8 @@ private:
     int count;
     QList<nube*> n1;
     QList<nube*> n2;
+    void renovar();
+    void chocar();
 };
 
 #endif // MAINWINDOW_H

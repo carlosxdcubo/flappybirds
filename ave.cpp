@@ -13,7 +13,7 @@ void ave::setFlag(int value)
 
 ave::ave(){
     px=0;
-    py=0;
+    py=100;
     vy=0;
 
 }
@@ -82,3 +82,4 @@ void ave::setPoint(float x, float y)
     py=y;
     vy=0;
 }
+
