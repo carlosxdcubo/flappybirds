@@ -23,14 +23,18 @@ public:
     //void eliminar();
 
 
+    QList<ave *> getBird() const;
+
+    float getPoints() const;
+
 private slots:
     void actualizar();
     void on_pushButton_clicked();
-
 private:
     int ancho;
     int alto;
-    int dif;
+    float points;
+    float dif;
     QTimer *timer;              //timer para los intervalos de tiempo entre cada frame
     QGraphicsScene *scene;      //scene que muestra los objetos animados
     float dt;                   //intervalo de tiempo entre frames
@@ -42,7 +46,12 @@ private:
     QList<nube*> n2;
     void renovar();
     void chocar();
+    void animarave();
+    void colision();
     QList<avion*> a;
+    void newavion(QList<avion*>);
+    void cambiar();
+
 };
 
 #endif // MAINWINDOW_H

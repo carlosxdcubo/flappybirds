@@ -10,5 +10,12 @@
         <file>avion3.png</file>
         <file>avion4.png</file>
         <file>globo.png</file>
+        <file>vidas.png</file>
+        <file>score.png</file>
+        <file>gameover.png</file>
+        <file>ys.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>ys.png</file>
     </qresource>
 </RCC>

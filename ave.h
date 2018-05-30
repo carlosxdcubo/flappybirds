@@ -12,6 +12,7 @@ private:
     float vy;
     int flag;
     int vidas;
+
 public:
     ave();
     //QRectF boundingRect() const;    //necesario definirla, devuelve el rectangulo que encierra el objeto
@@ -27,6 +28,7 @@ public:
     void setFlag(int value);
     void setVidas(int value);
     int getVidas() const;
+
 };
 
 #endif // AVE_H

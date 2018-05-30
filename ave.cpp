@@ -21,6 +21,7 @@ int ave::getVidas() const
     return vidas;
 }
 
+
 ave::ave(){
     px=0;
     py=100;

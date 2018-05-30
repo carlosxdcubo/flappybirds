@@ -30,7 +30,8 @@ SOURCES += \
     obstaculo.cpp \
     nube.cpp \
     gameover.cpp \
-    avion.cpp
+    avion.cpp \
+    insecto.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     obstaculo.h \
     nube.h \
     gameover.h \
-    avion.h
+    avion.h \
+    insecto.h
 
 FORMS += \
         mainwindow.ui \
