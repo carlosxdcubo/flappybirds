@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     timer=new QTimer(this);                 //crea el timer
     scene=new QGraphicsScene(this);         //crea la scene
+    count=0;
     ancho=1000;
     alto=600;
     scene->setSceneRect(0,0,ancho,alto);       //asigna el rectangulo que encierra la scene, determinado por h_limit y v_limit
@@ -31,6 +32,9 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(n1.first());
     n2.append(new nube(800,100+rand()%300+50,-3));
     scene->addItem(n2.first());
+    //insecto
+    insect.append(new insecto(500,300,0,0));
+    scene->addItem(insect.first());
     //avión
     a.append(new avion(1000,rand()%600+50,-1*(rand()%80+50)*dif));
     scene->addItem(a.first());
@@ -40,7 +44,6 @@ MainWindow::MainWindow(QWidget *parent) :
     bird.first()->setVel(0);                //velocidad =0
     bird.first()->setZValue(10);         //llevar al frente
     scene->addItem(bird.first());           //añado el ave a la escena
-    count=0;
     scene->setBackgroundBrush(QBrush(QImage(":/new/prefix1/cielo.png").scaled(800,600)));
 
 
@@ -64,6 +67,9 @@ void MainWindow::actualizar()
         //aviones
         a.first()->mover(dt);
         a.first()->setPos(a.first()->getPx(),a.first()->getPy());
+        //insecto
+        insect.first()->randomov(dt);
+        insect.first()->setPos(insect.first()->getPx(),insect.first()->getPy());
         //otras funciones.
         count++;
         chocar();
@@ -71,6 +77,7 @@ void MainWindow::actualizar()
         animarave();
         colision();
         cambiar();
+        rebotar();
         //Lcds
         ui->lcdNumber->display(bird.first()->getVidas());
         ui->lcdNumber_2->display(points);
@@ -115,7 +122,7 @@ void MainWindow::renovar()
         a.append(new avion(1000,rand()%500+10,-1*dif*60));
         scene->addItem(a.last());
         a.pop_front();
-        dif=dif+0.03;
+        dif=dif+0.1;
         points=points+10;
 
 
@@ -187,8 +194,16 @@ void MainWindow::cambiar()
     if(dif>2 && dif<2.5){
         a.first()->setPixmap(QPixmap(":/new/prefix1/avion4.png").scaled(450/2,350/2));
     }
-    if(dif>2.5 && dif<3){
+    if(dif>2.5){
         a.first()->setPixmap(QPixmap(":/new/prefix1/globo.png").scaled(440/2,520/2));
     }
+}
+
+void MainWindow::rebotar()
+{
+    if(insect.first()->getPy()>alto)insect.first()->setVy(insect.first()->getVy()*-1);
+    if(insect.first()->getPy()<0)insect.first()->setVy(insect.first()->getVy()*-1);
+    if(insect.first()->getPx()>ancho)insect.first()->setVx(insect.first()->getVx()*-1);
+    if(insect.first()->getPx()<0)insect.first()->setVx(insect.first()->getVx()*-1);
 }
 

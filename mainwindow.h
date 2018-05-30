@@ -8,6 +8,7 @@
 #include "ave.h"
 #include "nube.h"
 #include "avion.h"
+#include "insecto.h"
 
 namespace Ui {
 class MainWindow;
@@ -44,6 +45,7 @@ private:
     int count;
     QList<nube*> n1;
     QList<nube*> n2;
+    QList<insecto*> insect;
     void renovar();
     void chocar();
     void animarave();
@@ -51,6 +53,7 @@ private:
     QList<avion*> a;
     void newavion(QList<avion*>);
     void cambiar();
+    void rebotar();
 
 };
 

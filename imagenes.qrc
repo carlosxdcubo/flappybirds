@@ -14,8 +14,6 @@
         <file>score.png</file>
         <file>gameover.png</file>
         <file>ys.png</file>
-    </qresource>
-    <qresource prefix="/">
-        <file>ys.png</file>
+        <file>beedril.png</file>
     </qresource>
 </RCC>
