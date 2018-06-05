@@ -15,5 +15,9 @@
         <file>gameover.png</file>
         <file>ys.png</file>
         <file>beedril.png</file>
+        <file>aveb1.png</file>
+        <file>aveb2.png</file>
+        <file>aveb3.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

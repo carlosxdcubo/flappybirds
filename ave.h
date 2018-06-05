@@ -12,9 +12,11 @@ private:
     float vy;
     int flag;
     int vidas;
+    float points;
+    int player;
 
 public:
-    ave();
+    ave(int _p);
     //QRectF boundingRect() const;    //necesario definirla, devuelve el rectangulo que encierra el objeto
     //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget); //define como se pintara el objeto
     void aletear(bool);
@@ -29,6 +31,9 @@ public:
     void setVidas(int value);
     int getVidas() const;
 
+    float getPoints() const;
+    void setPoints(float value);
+    int getPlayer() const;
 };
 
 #endif // AVE_H

@@ -38,12 +38,17 @@ MainWindow::MainWindow(QWidget *parent) :
     //avión
     a.append(new avion(1000,rand()%600+50,-1*(rand()%80+50)*dif));
     scene->addItem(a.first());
-    //ave
-    bird.append(new ave());                 //creo el ave
+    //aves
+    bird.append(new ave(1));                 //creo el ave
     bird.first()->setPoint(0,80);        //la coloco en una posición
     bird.first()->setVel(0);                //velocidad =0
     bird.first()->setZValue(10);         //llevar al frente
+    bird.append(new ave(2));                 //creo el ave
+    bird.last()->setPoint(0,160);        //la coloco en una posición
+    bird.last()->setVel(0);                //velocidad =0
+    bird.last()->setZValue(10);         //llevar al frente
     scene->addItem(bird.first());           //añado el ave a la escena
+    scene->addItem(bird.last());           //añado el ave a la escena
     scene->setBackgroundBrush(QBrush(QImage(":/new/prefix1/cielo.png").scaled(800,600)));
 
 
@@ -56,11 +61,13 @@ MainWindow::~MainWindow()
 void MainWindow::actualizar()
 {
         //ave
-        bird.first()->actualizar(10,dt);
-        bird.first()->mov();
-        bird.first()->setPos(bird.last()->getPx(),bird.first()->getPy());
-        n1.first()->mover(dt);
+    for(int i=0;i<bird.size();i++){
+        bird.at(i)->actualizar(10,dt);
+        bird.at(i)->mov();
+        bird.at(i)->setPos(bird.at(i)->getPx(),bird.at(i)->getPy());
+    }
         //nubes
+        n1.first()->mover(dt);
         n1.first()->setPos(n1.first()->getPx(),n1.first()->getPy());
         n2.first()->mover(dt);
         n2.first()->setPos(n2.first()->getPx(),n2.first()->getPy());
@@ -80,7 +87,7 @@ void MainWindow::actualizar()
         rebotar();
         //Lcds
         ui->lcdNumber->display(bird.first()->getVidas());
-        ui->lcdNumber_2->display(points);
+        ui->lcdNumber_2->display(bird.first()->getPoints());
     }
 
 
@@ -89,10 +96,6 @@ void MainWindow::on_pushButton_clicked()
     timer->start(200*dt);
 }
 
-float MainWindow::getPoints() const
-{
-    return points;
-}
 
 QList<ave *> MainWindow::getBird() const
 {
@@ -102,6 +105,9 @@ void MainWindow::keyPressEvent(QKeyEvent *ev)
 {
     if(ev->key()==Qt::Key_W){
         bird.first()->aletear(true);
+    }
+    if(ev->key()==Qt::Key_P){
+        bird.last()->aletear(true);
     }
 }
 
@@ -121,10 +127,11 @@ void MainWindow::renovar()
     if(a.first()->getPx()<-500){
         a.append(new avion(1000,rand()%500+10,-1*dif*60));
         scene->addItem(a.last());
+        a.last()->setPos(a.last()->getPx(),a.last()->getPy());
         a.pop_front();
         dif=dif+0.1;
-        points=points+10;
 
+       for(int i=0;i<bird.size();i++)bird.at(i)->setPoints(bird.at(i)->getPoints()+10);
 
     }
 
@@ -132,40 +139,46 @@ void MainWindow::renovar()
 
 void MainWindow::chocar()
 {
-    if(bird.first()->getVidas()>0){
-        if(bird.first()->getPy()>alto-80){
+ for(int i=0;i<bird.size();i++){
+    if(bird.empty()==true)
+    {
+           gameover *MyDialog = new gameover(); MyDialog->show();
+           MyDialog->setlcd(bird.at(i)->getPoints());
+           bird.at(i)->setVidas(3);
+           bird.at(i)->setPoint(0,80);
+           timer->stop();
+        }
+    if(bird.at(i)->getVidas()>0){
+        if(bird.at(i)->getPy()>alto-80){
 
-            bird.first()->setVidas(bird.first()->getVidas()-1);
-            bird.first()->setPoint(0,100);
+            bird.at(i)->setVidas(bird.at(i)->getVidas()-1);
+            bird.at(i)->setPoint(0,100);
             timer->stop();
         }
-        if(bird.first()->getPy()<-40){
+        if(bird.at(i)->getPy()<-40){
 
-            bird.first()->setVidas(bird.first()->getVidas()-1);
-            bird.first()->setPoint(0,100);
+            bird.at(i)->setVidas(bird.at(i)->getVidas()-1);
+            bird.at(i)->setPoint(0,100);
             timer->stop();
         }
     }
     else{
-       gameover *MyDialog = new gameover(); MyDialog->show();
-       MyDialog->setlcd(points);
-       bird.first()->setVidas(3);
-       bird.first()->setPoint(0,80);
-       points=0;
-       timer->stop();
+       bird.at(i)->hide();
+       bird.removeAt(i);
     }
+}
 }
 
 void MainWindow::animarave()
 {
     if (count>=0 && count<=99){
-        bird.first()->setFlag(1);
+        for(int i=0;i<bird.size();i++)bird.at(i)->setFlag(1);
     }
     if (count>=100 && count<=199){
-        bird.first()->setFlag(2);
+        for(int i=0;i<bird.size();i++)bird.at(i)->setFlag(2);
     }
     if (count>=200 && count<=299){
-        bird.first()->setFlag(3);
+        for(int i=0;i<bird.size();i++)bird.at(i)->setFlag(3);
     }
     if (count>=300){
         count=0;
@@ -174,11 +187,12 @@ void MainWindow::animarave()
 
 void MainWindow::colision()
 {
-    if(bird.first()->collidesWithItem(a.first())){
+    if(bird.first()->collidesWithItem(a.last())){
     scene->removeItem(a.first());
     a.pop_front();
     a.append(new avion(1000,rand()%500+10,-1*dif*100));
     scene->addItem(a.last());
+    a.first()->setPos(a.first()->getPx(),a.first()->getPy());
     bird.first()->setVidas(bird.first()->getVidas()-1);
     }
 }

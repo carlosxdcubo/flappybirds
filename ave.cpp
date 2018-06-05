@@ -22,11 +22,27 @@ int ave::getVidas() const
 }
 
 
-ave::ave(){
+float ave::getPoints() const
+{
+    return points;
+}
+
+void ave::setPoints(float value)
+{
+    points = value;
+}
+
+int ave::getPlayer() const
+{
+    return player;
+}
+
+ave::ave(int _p){
     px=0;
     py=100;
     vy=0;
     vidas=3;
+    player=_p;
     
 }
 //QRectF ave::boundingRect() const
@@ -44,6 +60,7 @@ ave::ave(){
 //}
 void ave::mov()
 {
+    if(player==1){
     if (flag==0)
     {
 
@@ -58,7 +75,23 @@ void ave::mov()
     {
         setPixmap(QPixmap(":/new/prefix1/ave4.png").scaled(80*2,60*2));
     }
+    }
+    if(player==2){
+    if (flag==1)
+    {
+        setPixmap(QPixmap(":/new/prefix1/aveb1.png").scaled(80*2,60*2));
 
+    }
+    if (flag==2)
+    {
+        setPixmap(QPixmap(":/new/prefix1/aveb2.png").scaled(80*2,60*2));
+    }
+    if (flag==0)
+    {
+        setPixmap(QPixmap(":/new/prefix1/aveb3.png").scaled(80*2,60*2));
+    }
+
+}
 }
 
 float ave::getPy() const

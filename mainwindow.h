@@ -34,7 +34,6 @@ private slots:
 private:
     int ancho;
     int alto;
-    float points;
     float dif;
     QTimer *timer;              //timer para los intervalos de tiempo entre cada frame
     QGraphicsScene *scene;      //scene que muestra los objetos animados
