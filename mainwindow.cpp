@@ -111,10 +111,10 @@ void MainWindow::keyPressEvent(QKeyEvent *ev)
         bird.first()->aletear(true);
     }
     if(ev->key()==Qt::Key_D){
-        bird.first()->setVx(bird.first()->getVx()+5);
+        bird.first()->setPx(bird.first()->getPx()+10);
     }
     if(ev->key()==Qt::Key_A){
-        bird.first()->setVx(bird.first()->getVx()-5);
+        bird.first()->setPx(bird.first()->getPx()-10);
     }
 
     //PLAYER 2
@@ -122,10 +122,10 @@ void MainWindow::keyPressEvent(QKeyEvent *ev)
         bird.last()->aletear(true);
     }
     if(ev->key()==Qt::Key_6){
-        bird.last()->setVx(bird.last()->getVx()+5);
+        bird.last()->setPx(bird.last()->getPx()+10);
     }
     if(ev->key()==Qt::Key_4){
-        bird.last()->setVx(bird.last()->getVx()-5);
+        bird.last()->setPx(bird.last()->getPx()-10);
     }
 }
 
@@ -149,39 +149,66 @@ void MainWindow::renovar()
         a.pop_front();
         dif=dif+0.1;
 
-       for(int i=0;i<bird.size();i++)bird.at(i)->setPoints(bird.at(i)->getPoints()+10);
-
+       for(int i=0;i<bird.size();i++){
+          if(bird.at(i)->getVidas()>0) bird.at(i)->setPoints(bird.at(i)->getPoints()+10);
+}
     }
 
 }
 
 void MainWindow::chocar()
 {
-    if(bird.first()->getVidas()==0 && bird.last()->getVidas()==0 ){
+    if(bird.first()->getVidas()<0 && bird.last()->getVidas()<0){
                gameover *GO = new gameover();
                GO->setlcd1(bird.first()->getPoints());
                GO->setlcd2(bird.last()->getPoints());
                GO->show();
-               timer->stop();
+
+
     }
  for(int i=0;i<bird.size();i++){
 
     if(bird.at(i)->getVidas()>0){
         if(bird.at(i)->getPy()>alto-80){
-
             bird.at(i)->setVidas(bird.at(i)->getVidas()-1);
-            bird.at(i)->setPoint(0,100);
+            bird.at(i)->setPoint(0,200);
+            bird.at(i)->setVx(0);
             timer->stop();
         }
-        if(bird.at(i)->getPy()<-40){
+        if(bird.at(i)->getPx()>ancho-45){
 
             bird.at(i)->setVidas(bird.at(i)->getVidas()-1);
-            bird.at(i)->setPoint(0,100);
+            bird.at(i)->setPoint(0,200);
+            bird.at(i)->setVx(0);
+            timer->stop();
+        }
+        if(bird.at(i)->getPx()<-40){
+
+            bird.at(i)->setVidas(bird.at(i)->getVidas()-1);
+            bird.at(i)->setPoint(0,200);
+            bird.at(i)->setVx(0);
+            timer->stop();
+        }
+        if(bird.at(i)->getPy()<-45){
+
+            bird.at(i)->setVidas(bird.at(i)->getVidas()-1);
+            bird.at(i)->setPoint(0,200);
+            bird.at(i)->setVx(0);
             timer->stop();
         }
     }
     else{
-       bird.at(i)->hide();
+
+       scene->removeItem(bird.at(i));
+       if(bird.first()->getVidas()<=0 && bird.last()->getVidas()<=+0){
+                  gameover *GO = new gameover();
+                  GO->setlcd1(bird.first()->getPoints());
+                  GO->setlcd2(bird.last()->getPoints());
+                  GO->show();
+                  timer->stop();
+
+
+       }
 
     }
 }
@@ -204,7 +231,7 @@ void MainWindow::animarave()
 }
 
 void MainWindow::colision()
-{
+{   //Colision con avion
     for(int i=0;i<bird.size();i++){
     if(bird.at(i)->collidesWithItem(a.last())){
     scene->removeItem(a.first());
@@ -214,12 +241,13 @@ void MainWindow::colision()
     a.first()->setPos(a.first()->getPx(),a.first()->getPy());
     bird.at(i)->setVidas(bird.at(i)->getVidas()-1);
     }
+    //colision insecto
     if(bird.at(i)->collidesWithItem(insect.first())){
     insect.append(new insecto(500,300,0,0));
     scene->addItem(insect.last());
     scene->removeItem(insect.first());
     insect.pop_front();
-    insect.first()->setPos(a.first()->getPx(),a.first()->getPy());
+    insect.first()->setPos(insect.first()->getPx(),a.first()->getPy());
     bird.at(i)->setPoints(bird.at(i)->getPoints()+10);
     }
     }
