@@ -10,6 +10,7 @@ private:
     float px;
     float py;
     float vy;
+    float vx;
     int flag;
     int vidas;
     float points;
@@ -34,6 +35,10 @@ public:
     float getPoints() const;
     void setPoints(float value);
     int getPlayer() const;
+    void setPx(float value);
+    void setPy(float value);
+    float getVx() const;
+    void setVx(float value);
 };
 
 #endif // AVE_H

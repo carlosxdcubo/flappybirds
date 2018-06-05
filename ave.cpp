@@ -37,27 +37,37 @@ int ave::getPlayer() const
     return player;
 }
 
+void ave::setPx(float value)
+{
+    px = value;
+}
+
+void ave::setPy(float value)
+{
+    py = value;
+}
+
+float ave::getVx() const
+{
+    return vx;
+}
+
+void ave::setVx(float value)
+{
+    vx = value;
+}
+
 ave::ave(int _p){
     px=0;
     py=100;
     vy=0;
+    vx=0;
     vidas=3;
+    points=0;
     player=_p;
     
 }
-//QRectF ave::boundingRect() const
-//{
-//        return QRectF(-100,-100,100,100);
-//}
 
-//void ave::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widgets)
-//{
-
-//    QPixmap pixmap;
-//    pixmap.load(":/new/prefix1/ave1.png");
-//    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
-
-//}
 void ave::mov()
 {
     if(player==1){
@@ -112,6 +122,7 @@ void ave::aletear(bool b)
 
 void ave::actualizar(float _ay, float dt)
 {
+    px+=vx*dt;
     vy+=_ay*dt;
     py+=(vy*dt)+((_ay*dt*dt)/2);
 }

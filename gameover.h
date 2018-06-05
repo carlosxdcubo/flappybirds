@@ -14,7 +14,8 @@ class gameover : public QDialog
 public:
     explicit gameover(QWidget *parent = 0);
     ~gameover();
-    void setlcd(int);
+    void setlcd1(int);
+    void setlcd2(int);
 
 private:
     Ui::gameover *ui;

@@ -15,7 +15,12 @@ gameover::~gameover()
     delete ui;
 }
 
-void gameover::setlcd(int a)
+void gameover::setlcd1(int a)
 {
     ui->lcdNumber->display(a);
+}
+
+void gameover::setlcd2(int a)
+{
+    ui->lcdNumber_2->display(a);
 }
