@@ -31,7 +31,8 @@ SOURCES += \
     nube.cpp \
     gameover.cpp \
     avion.cpp \
-    insecto.cpp
+    insecto.cpp \
+    form.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,11 +41,13 @@ HEADERS += \
     nube.h \
     gameover.h \
     avion.h \
-    insecto.h
+    insecto.h \
+    form.h
 
 FORMS += \
         mainwindow.ui \
-    gameover.ui
+    gameover.ui \
+    form.ui
 
 RESOURCES += \
     imagenes.qrc

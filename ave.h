@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
+#include <math.h>       /* pow */
 
 class ave:public QGraphicsPixmapItem
 {

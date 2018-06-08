@@ -122,7 +122,7 @@ void ave::aletear(bool b)
 
 void ave::actualizar(float _ay, float dt)
 {
-    px+=vx*dt;
+    px+=vx*dt+((-100*vx)*dt*dt/2);
     vy+=_ay*dt;
     py+=(vy*dt)+((_ay*dt*dt)/2);
 }
