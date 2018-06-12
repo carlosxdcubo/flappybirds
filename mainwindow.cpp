@@ -4,7 +4,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include "gameover.h"
-
+#define ARCHIVO "partida.txt"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->stop();                          //para el timer
     connect(timer,SIGNAL(timeout()),this,SLOT(actualizar()));    //bucle para actualizar posicion
     std::ifstream file;
-    file.open("partida.txt");
+    file.open(ARCHIVO);
     QList<std::string> dats;
     std::string aux;
     std::string aux2;
@@ -153,7 +153,7 @@ void MainWindow::keyPressEvent(QKeyEvent *ev)
     }
 }
 
-void MainWindow::renovar()
+void MainWindow::renovar()   //elimina y añade objetos que salen
 {
     if(n1.first()->getPx()<-1000){
         n1.append(new nube(1000,rand()%300+50,(-1*rand()%20+10)*dif));
@@ -180,7 +180,7 @@ void MainWindow::renovar()
 
 }
 
-void MainWindow::chocar()
+void MainWindow::chocar() //chocar con los bordes
 {
     if(bird.first()->getVidas()<0 && bird.last()->getVidas()<0){
                gameover *GO = new gameover();
@@ -224,7 +224,8 @@ void MainWindow::chocar()
     else{
 
        scene->removeItem(bird.at(i));
-       if(bird.first()->getVidas()<=0 && bird.last()->getVidas()<=0){
+       if(bird.first()->getVidas()<=0 && bird.last()->getVidas()<=0){  //GAMEOVER
+
                   gameover *GO = new gameover();
                   GO->setlcd1(bird.first()->getPoints());
                   GO->setlcd2(bird.last()->getPoints());
@@ -277,7 +278,7 @@ void MainWindow::colision()
     }
 }
 
-void MainWindow::cambiar()
+void MainWindow::cambiar()//Cambia los aviones
 {
     if(dif>1.2 && dif<1.5){
         a.first()->setPixmap(QPixmap(":/new/prefix1/avion2.png").scaled(400/2.5,300/2.5));
