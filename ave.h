@@ -18,7 +18,7 @@ private:
     int player;
 
 public:
-    ave(int _p);
+    ave(int _p,float px,float py,float vx,float vy, float vidas, float points);
     //QRectF boundingRect() const;    //necesario definirla, devuelve el rectangulo que encierra el objeto
     //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget); //define como se pintara el objeto
     void aletear(bool);

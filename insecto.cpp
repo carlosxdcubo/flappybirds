@@ -4,7 +4,7 @@
 
 insecto::insecto(float _px,float _py,float _vx,float _vy):obstaculo(_px,_py,_vx, _vy)
 {
-    setPixmap(QPixmap(":/new/prefix1/beedril.png"));
+    setPixmap(QPixmap(":/new/prefix1/beedril.png").scaled(40,40));
 }
 
 void insecto::randomov(float _dt)

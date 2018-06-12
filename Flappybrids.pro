@@ -32,7 +32,9 @@ SOURCES += \
     gameover.cpp \
     avion.cpp \
     insecto.cpp \
-    form.cpp
+    form.cpp \
+    menu.cpp \
+    pause.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,12 +44,16 @@ HEADERS += \
     gameover.h \
     avion.h \
     insecto.h \
-    form.h
+    form.h \
+    menu.h \
+    pause.h
 
 FORMS += \
         mainwindow.ui \
     gameover.ui \
-    form.ui
+    form.ui \
+    menu.ui \
+    pause.ui
 
 RESOURCES += \
     imagenes.qrc

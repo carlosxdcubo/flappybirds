@@ -4,7 +4,7 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include "gameover.h"
-
+#define ARCHIVO "defecto"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->stop();                          //para el timer
     connect(timer,SIGNAL(timeout()),this,SLOT(actualizar()));    //bucle para actualizar posicion
     std::ifstream file;
-    file.open("partida.txt");
+    file.open(ARCHIVO);
     QList<std::string> dats;
     std::string aux;
     std::string aux2;

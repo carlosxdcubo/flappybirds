@@ -5,10 +5,12 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QKeyEvent>
+#include "fstream"
 #include "ave.h"
 #include "nube.h"
 #include "avion.h"
 #include "insecto.h"
+#include "pause.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,15 +24,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     //void eliminar();
-
-
+    pause p;
     QList<ave *> getBird() const;
-
     float getPoints() const;
-
 private slots:
     void actualizar();
     void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
+
 private:
     int ancho;
     int alto;
@@ -53,6 +54,8 @@ private:
     void newavion(QList<avion*>);
     void cambiar();
     void rebotar();
+
+
 
 };
 

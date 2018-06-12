@@ -57,13 +57,13 @@ void ave::setVx(float value)
     vx = value;
 }
 
-ave::ave(int _p){
-    px=0;
-    py=100;
-    vy=0;
-    vx=0;
-    vidas=3;
-    points=0;
+ave::ave(int _p,float _px,float _py,float _vx,float _vy, float _vidas, float _points){
+    px=_px;
+    py=_py;
+    vy=_vy;
+    vx=_vx;
+    vidas=_vidas;
+    points=_points;
     player=_p;
     
 }
